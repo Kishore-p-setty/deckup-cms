@@ -47,17 +47,24 @@ class Login extends Component {
             })
         });
         login.json().then(loginDetails => {
-            if (!loginDetails.success) {
+            if (!loginDetails.success == false) {
                 this.setState({
                     loginError: true
                 });
             }
-            localStorage.setItem('loginToken', loginDetails.token);
-            this.setState({
-                loginError: false,
-                loginSuccess: true
-            });
-            history.push('/home');
+            if (loginDetails.token) {
+                localStorage.setItem('loginToken', loginDetails.token);
+                this.setState({
+                    loginError: false,
+                    loginSuccess: true
+                });
+                history.push('/home');
+            } else {
+                this.setState({
+                    loginError: true,
+                    loginSuccess: false
+                });
+            }
         }).catch(err => {
             console.log(err);
             this.setState({
@@ -68,14 +75,16 @@ class Login extends Component {
     
     render() {
         return (
-            <div>
+            <div className="login-background">
                 <div className="login-page">
                     <div className="login-form">
-                        <div className="login-form">
-                            <input value={this.state.email} onChange={this.updateEmailValue} type="text" placeholder="username"/>
-                            <input value={this.state.password} onChange={this.updatePasswordValue} type="password" placeholder="password"/>
-                            <button onClick={this.validateLogin.bind(this)}>login</button>
-                        </div>
+                        <input value={this.state.email} onChange={this.updateEmailValue} type="text" placeholder="username"/>
+                        <input value={this.state.password} onChange={this.updatePasswordValue} type="password" placeholder="password"/>
+                        <button onClick={this.validateLogin.bind(this)}>login</button>
+                        {this.state.loginError ? (
+                        <div className="w3-center">
+                            <p className="w3-text-black">Username/Password is Incorrect</p>
+                        </div>) : null}
                     </div>
                 </div>
             </div>

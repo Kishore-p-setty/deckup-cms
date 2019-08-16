@@ -61,7 +61,12 @@ class Home extends Component {
         this.getAllTipOfTheDay = this.getAllTipOfTheDay.bind(this);
     }
 
-    componentDidMount() {
+    componentWillMount() {
+        const { history } = this.props;
+        const { loginToken } = localStorage;
+        if (!loginToken) {
+            history.push('/');
+        }
         this.getAllBrands();
         this.getAllCategories();
         this.getAllCelebrities();
@@ -675,7 +680,6 @@ class Home extends Component {
                             <label htmlFor="categoryName">Name</label>
                                 <input type="text" value={this.state.categoryName} onChange={this.updateCategoryNameValue} id="category" name="categoryName" placeholder="Category name"/>
 
-                                <input onClick={this.addCategory} type="submit" value="Submit"/>
                                 <button className="submit" disabled={this.state.uploadingCategories} onClick={this.addCategory} type="submit">{!(this.state.uploadingCategories) ? 'Submit' : 'Adding'}</button>
                                 <div className="w3-center">{this.state.uploadingCategories ? <i className="fa fa-circle-o-notch fa-spin" style={{"fontSize":"24px"}}></i> : null}</div>
                             </div>

@@ -30,6 +30,7 @@
   padding: 8% 0 0;
   margin: auto;
 }
+
 .login-form {
   position: relative;
   z-index: 1;
@@ -40,6 +41,7 @@
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
 .login-form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
@@ -51,6 +53,7 @@
   box-sizing: border-box;
   font-size: 14px;
 }
+
 .login-form button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
@@ -65,20 +68,26 @@
   transition: all 0.3 ease;
   cursor: pointer;
 }
+
 .login-form button:hover,.form button:active,.form button:focus {
   background: #43A047;
 }
+
 .login-form .message {
   margin: 15px 0 0;
   color: #b3b3b3;
   font-size: 12px;
 }
+
 .login-form .message a {
   color: #4CAF50;
   text-decoration: none;
 }
-.login-form .register-form {
-  display: none;
+
+.login-background {
+  width: 100%;
+  height: 100vh;
+  background: #43A047;
 }
 
 @keyframes App-logo-spin {
