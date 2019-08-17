@@ -85,7 +85,7 @@ class Login extends Component {
                         <input value={this.state.email} onChange={this.updateEmailValue} type="text" placeholder="username"/>
                         <input value={this.state.password} onChange={this.updatePasswordValue} type="password" placeholder="password"/>
                         <button onClick={this.validateLogin.bind(this)}>login</button>
-                        <div className="w3-center">{this.state.uploadingTipOfTheDay ? <i className="fa fa-circle-o-notch fa-spin" style={{"fontSize":"24px"}}></i> : null}</div>
+                        <div className="w3-center">{this.state.loggingInUser ? <i className="fa fa-circle-o-notch fa-spin" style={{"fontSize":"24px"}}></i> : null}</div>
                         {this.state.loginError ? (
                         <div className="w3-center">
                             <p className="w3-text-black">Username/Password is Incorrect</p>
