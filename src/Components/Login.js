@@ -10,7 +10,8 @@ class Login extends Component {
             email: '',
             password: '',
             loginError: false,
-            loginSuccess: false
+            loginSuccess: false,
+            loggingInUser: false
         }
         this.updateEmailValue = this.updateEmailValue.bind(this);
         this.updatePasswordValue = this.updatePasswordValue.bind(this);
@@ -37,6 +38,7 @@ class Login extends Component {
     }
 
     async validateLogin() {
+        this.setState({loggingInUser: true});
         const { history } = this.props;
         const login = await fetch(HOST.PRODUCTION + '/user/login', {
             headers: utils.getHeaders(),
@@ -53,6 +55,7 @@ class Login extends Component {
                 });
             }
             if (loginDetails.token) {
+                this.setState({loggingInUser: false});
                 localStorage.setItem('loginToken', loginDetails.token);
                 this.setState({
                     loginError: false,
@@ -60,6 +63,7 @@ class Login extends Component {
                 });
                 history.push('/home');
             } else {
+                this.setState({loggingInUser: false});
                 this.setState({
                     loginError: true,
                     loginSuccess: false
@@ -81,6 +85,7 @@ class Login extends Component {
                         <input value={this.state.email} onChange={this.updateEmailValue} type="text" placeholder="username"/>
                         <input value={this.state.password} onChange={this.updatePasswordValue} type="password" placeholder="password"/>
                         <button onClick={this.validateLogin.bind(this)}>login</button>
+                        <div className="w3-center">{this.state.uploadingTipOfTheDay ? <i className="fa fa-circle-o-notch fa-spin" style={{"fontSize":"24px"}}></i> : null}</div>
                         {this.state.loginError ? (
                         <div className="w3-center">
                             <p className="w3-text-black">Username/Password is Incorrect</p>
