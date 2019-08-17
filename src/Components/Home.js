@@ -65,7 +65,7 @@ class Home extends Component {
         const { history } = this.props;
         const { loginToken } = localStorage;
         if (!loginToken) {
-            history.push('/');
+            history.pop();
         }
         this.getAllBrands();
         this.getAllCategories();
