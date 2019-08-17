@@ -72,7 +72,8 @@ class Login extends Component {
         }).catch(err => {
             console.log(err);
             this.setState({
-                loginError: true
+                loginError: true,
+                loggingInUser: false
             });
         });
     }
