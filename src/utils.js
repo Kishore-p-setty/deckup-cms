@@ -5,13 +5,16 @@ const s3 = new AWS.S3({
     secretAccessKey: AWS_SECRET_ACCESS_KEY,
     region: AWS_REGION
 });
+
 exports.getHeaders = () => {
+    const authToken = localStorage.getItem('loginToken');
     const headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+        "Authorization": authToken
     };
     return headers;
 }

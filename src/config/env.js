@@ -1,6 +1,6 @@
 module.exports = {
     HOST: {
-        DEV: 'ec2-54-184-79-143.us-west-2.compute.amazonaws.com',
+        DEV: 'http://localhost:6060',
         PRODUCTION: 'ec2-54-184-79-143.us-west-2.compute.amazonaws.com',
     },
     AWS_ACCESS_KEY_ID: 'AKIAJVSGN3JMTELWT5RA',

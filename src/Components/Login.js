@@ -17,7 +17,7 @@ class Login extends Component {
         this.updatePasswordValue = this.updatePasswordValue.bind(this);
     }
     
-    componentDidMount() {
+    componentWillMount() {
         const { history } = this.props;
         const { loginToken } = localStorage;
         if (loginToken) {
@@ -40,7 +40,7 @@ class Login extends Component {
     async validateLogin() {
         this.setState({loggingInUser: true});
         const { history } = this.props;
-        const login = await fetch(HOST.PRODUCTION + '/user/login', {
+        const login = await fetch(`${HOST.DEV}/user/login`, {
             headers: utils.getHeaders(),
             method: 'POST',
             body: JSON.stringify({
@@ -49,7 +49,7 @@ class Login extends Component {
             })
         });
         login.json().then(loginDetails => {
-            if (!loginDetails.success == false) {
+            if (!loginDetails.success === false) {
                 this.setState({
                     loginError: true
                 });
